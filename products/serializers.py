@@ -45,6 +45,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
     category = serializers.CharField(source = 'product.category.name')
     description = serializers.CharField(source = 'product.description')
     parent_id = serializers.IntegerField(source = 'product.id')
+    discount = serializers.IntegerField(source = 'discount.discount')
     discounted_price = serializers.SerializerMethodField()
     rating = serializers.SerializerMethodField()
     review_count = serializers.SerializerMethodField()
@@ -62,6 +63,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
             'description',
             'stock',
             'price',
+            'discount',
             'discounted_price',
             'color',
             'size',
@@ -104,6 +106,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
 
 class ProductListSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source = 'product.name')
+    discount = serializers.IntegerField(source = 'discount.discount')
     discounted_price = serializers.SerializerMethodField()
     rating = serializers.SerializerMethodField()
     review_count = serializers.SerializerMethodField()
@@ -114,6 +117,7 @@ class ProductListSerializer(serializers.ModelSerializer):
             'name',
             'image',
             'price',
+            'discount',
             'discounted_price',
             'rating',
             'review_count'
