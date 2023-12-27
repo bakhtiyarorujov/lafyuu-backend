@@ -93,7 +93,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
 
     def get_available_sizes(self, instance):
         product = instance.product
-        sizes = Size.objects.filter(product_size__product = product)
+        sizes = Size.objects.filter(product_size__product = product).distinct()
         serialized_sizes = SizeSerializer(sizes, many=True).data
         return serialized_sizes
     
